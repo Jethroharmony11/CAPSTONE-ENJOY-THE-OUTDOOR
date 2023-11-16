@@ -1,0 +1,22 @@
+body{ background-color: darkseagreen;
+    color: saddlebrown;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    vertical-align: top;
+    }
+   
+    a:hover{
+    text-decoration: underline;
+    color: gold;
+    }
+    
+    select{
+    margin: 1em;
+    padding: 1em;
+    border-radius: 3em;
+    }
+    /* option{
+    padding: 1em;
+    margin: 1em;
+    } */
+    
