@@ -4,66 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mountains</title>
-<!-- FIRST LOAD ALL THE MOUNTAIANS LIKE THIS--> 
-<script src="./scripts/mountainData.js"></script>
+    <!-- FIRST LOAD ALL THE MOUNTAINS LIKE THIS-->
+    <script src="./scripts/mountainData.js"></script>
+    <style>
+        body{
+            background:linear-gradient(rgba(39, 50, 245, 0.8),rgba(245, 225, 39, 0.12)),
+            linear-gradient(white);
 
+        }
+    </style>
 </head>
 <body>
-    <hr>Mountains</h1>
+    <h1>Mountains</h1>
     <!-- THIRD MAKE A PLACE FOR THE MOUNTAIN LIST AND A DEFAULT OPTION -->
-    <select id="list"><option value="">select a Mountain</option>option></select>
+    <select id="list"><option value="">Select a Mountain</option></select>
     <!-- FIFTH ADD TARGET FOR RESULTS -->
-    <p id="result"></p>
+    <div id="mountain-info"></div>
+
+    <script>
+        // SECOND MAKE SURE DATA IS LOADED LIKE THIS
+        document.addEventListener("DOMContentLoaded", () => {
+            document.body.innerHTML += mountainsArray.length; // You should see 48 in the preview
+
+            // FOURTH LOOP THROUGH ALL DATA AND ADD A NEW OPTION FOR EACH TO THE SELECT
+            const list = document.getElementById("list");
+            mountainsArray.forEach(mountain => {
+                const option = document.createElement("option");
+                option.innerHTML = mountain.name;
+                list.appendChild(option);
+            });
+
+            // SIXTH - LISTEN FOR LIST CHANGE SELECTION
+            list.addEventListener("change", async (event) => {
+                let mountain = mountainsArray.find((m) => m.name == event.target.value);
+                const mountainInfoElement = document.getElementById("mountain-info");
+                mountainInfoElement.innerHTML = `<h1>${mountain.name}</h1>`;
+                mountainInfoElement.innerHTML += `<p>${mountain.desc}</p>`;
+                mountainInfoElement.innerHTML += `<h3>${mountain.elevation}</h3>`;
+                mountainInfoElement.innerHTML += `<img src="./images/${mountain.img}" alt="${mountain.name}">`;
+
+                try {
+                    const { sunrise, sunset } = await getSunsetForMountain(mountain.lat, mountain.lng);
+                    mountainInfoElement.innerHTML += `<p>Sunrise: ${sunrise}</p>`;
+                    mountainInfoElement.innerHTML += `<p>Sunset: ${sunset}</p>`;
+                } catch (error) {
+                    console.error("Error fetching sunrise/sunset times", error);
+                    mountainInfoElement.innerHTML += `<p>Error fetching sunrise/sunset times</p>`;
+                }
+            });
+        });
+    </script>
 </body>
-<script>
-    // SECOND MAKE SUR DATA IS LOADED LIKE THIS
-    document.body.innerHTML += mountainsArray.length; //e should see 48 in the show preview
-
-    // FOURTH LOOP THROUGH ALL DATA AND ADD A NEW OPTION FOR  EACH TO THE SELECT
-    mountainsArray.forEach (mountain => { //USE EACH METHOD OF THE DATA TO GET 1 AT A TIME IN ARROW FUNCTION
-    const option = document.createElement("option"); //CREATE BLANK OPTION ELEMENT
-option.innerHTML = mountain.name; //SET DISPLAY OPTION CONTENT TO NAME
-list.appendChild(option); // PLACE OPTION IN SELECT LIST
-}); //END FOR EACH
-
-// SIXTH - LISTEN FOR LIST CHANGE SELECTION
-list.addEventListener("change", event=>{
-    let mountain = mountainsArray.find(m=>m.name == event.target.value); //FIND DATA
-    result.innerHTML = `<h1>${mountain.name}</h1>`; //SHOW RESULTS
-    result.innerHTML +=mountain.desc
-    result.innerHTML += `<h3>${mountain.elevation}</3h>`;
-    result.innerHTML += `<img src="./images/${mountain.img}">`;
-}); //END LISTENER
-// Function to fetch sunset/sunrise times
-async function getSunsetForMountain(lat, lng) {
-    let response = await fetch(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`);
-    let data = await response.json();
-    return data.results;
-}
-
-// Display mountain information and sunrise/sunset times
-async function displayMountainInfo() {
-    const mountainInfoElement = document.getElementById("mountain-info");
-
-    // Display mountain image
-    mountainInfoElement.innerHTML = `<img src="${mountainsArray.image}" alt="${mountain.name}">`;
-
-    // Fetch and display sunrise/sunset times
-    try {
-        const { sunrise, sunset } = await getSunsetForMountain(mountain.lat, mountain.lng);
-        mountainInfoElement.innerHTML += `<p>${mountain.name}</p>`;
-        mountainInfoElement.innerHTML += `<p>Sunrise: ${sunrise}</p>`;
-        mountainInfoElement.innerHTML += `<p>Sunset: ${sunset}</p>`;
-    } catch (error) {
-        console.error("Error fetching sunrise/sunset times", error);
-        mountainInfoElement.innerHTML += `<p>Error fetching sunrise/sunset times</p>`;
-    }
-}
-
-// Call the function to display mountain information
-displayMountainInfo();
-
-
-
- </script>   
 </html>

@@ -1,86 +1,93 @@
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>parks</title>
+    <title>Parks</title>
     <script src="./scripts/locationData.js"></script>
     <script src="./scripts/parkTypeData.js"></script>
     <script src="./scripts/nationalParkData.js"></script>
 
     <style>
-       body{
-    
-           vertical-align: top;
-    }
-    .card{
-    width: 29vw;
-    border: 1px solid black;
-    margin: 0.1em 0.1em 0 0;
-    display: inline-block;
-    vertical-align: top;
-    height: 20vh;
-    }
-    h1{
-    text-decoration: none;
-    display: inline-block;
-    margin: 1em;
-    color: white;
-    background-color: rgb(129, 139, 19);
-    padding: 1em;
-    border-radius: 1em;;
-    }
-    h2{
-        color: blue;
-    }
+        body {
+            background: linear-gradient(rgba(39, 50, 245, 0.8), rgba(245, 225, 39, 0.12)),
+                       linear-gradient(white);
+        }
+
+        .card {
+            width: 29vw;
+            border: 1px solid black;
+            margin: 0.1em 0.1em 0 0;
+            display: inline-block;
+            height: 20vh;
+        }
+
+        h1 {
+            text-decoration: none;
+            margin: 1em;
+            color: white;
+            background-color: rgb(129, 139, 19);
+            padding: 1em;
+            border-radius: 1em;
+            display: inline-block;
+        }
+
+        h2 {
+            color: blue;
+        }
     </style>
-    </head>
-    <body>
+</head>
+
+<body>
     <h1>Parks</h1>
     <select id="locationsList">
-    <option value="">Select a Location:</option>
+        <option value="">Select a Location:</option>
     </select>
     <select id="parkTypeList">
-    <option value="">Select a Park Type:</option>
+        <option value="">Select a Park Type:</option>
     </select>
     <div id="results">Results</div>
-    </body>
+
     <script>
-    locationsArray.forEach(locations => locationsList.innerHTML += `<option>${locations}</option>`);
-    parkTypesArray.forEach(pt => parkTypeList.innerHTML += `<option>${pt}</option>`);
-    //document.body.innerHTML += nationalParksArray.length;
+        const locationsList = document.getElementById("locationsList");
+        const parkTypeList = document.getElementById("parkTypeList");
+        const results = document.getElementById("results");
+
+        locationsArray.forEach(location => locationsList.innerHTML += `<option>${location}</option>`);
+        parkTypesArray.forEach(parkType => parkTypeList.innerHTML += `<option>${parkType}</option>`);
     
-    //GLOBALS
-    let selectedLocation = "";
-    let selectedParkType = "";
-
-    locationsList.addEventListener("change", e => {
-    selectedLocation = e.target.value;
-    showResults();
-    });
-
-    parkTypeList.addEventListener("change", e => {
-    selectedParkType = e.target.value;
-    showResults();
-    });
-
-    function isMatch(p){
-    return (selectedLocation == "" || p.State == selectedLocation) &&
-    (selectedParkType == "" || p.LocationName.includes(selectedParkType));
-    }
-
-    function getCard(p){
-    return `<div class="card">${p.LocationName}<div><b>${p.State}</b></div></div>`;
-    }
-
-    function showResults() {
-    results.innerHTML = "";
-    const filtered = nationalParksArray.filter(isMatch);
-    filtered.forEach(p => results.innerHTML += getCard(p));
-    }
-
-    showResults();
+        let selectedLocation = "";
+        let selectedParkType = "";
+    
+        locationsList.addEventListener("change", e => {
+            selectedLocation = e.target.value;
+            showResults();
+        });
+    
+        parkTypeList.addEventListener("change", e => {
+            selectedParkType = e.target.value;
+            showResults();
+        });
+    
+        function isMatch(p) {
+            return (selectedLocation === "" || p.State === selectedLocation) &&
+                   (selectedParkType === "" || p.LocationName.includes(selectedParkType));
+        }
+    
+        function getCard(p) {
+            return `<div class="card">${p.LocationName}<div><b>${p.State}</b></div></div>`;
+        }
+    
+        function showResults() {
+            results.innerHTML = "";
+            const filtered = nationalParksArray.filter(isMatch);
+            filtered.forEach(p => results.innerHTML += getCard(p));
+        }
+    
+        showResults();
     </script>
-    </html>
-    ...
+</body>
+
+</html>

@@ -1,10 +1,5 @@
 
-const mountain = {
-    name: "Mountain Name",
-    image: "mountain.jpg", // Replace with the actual image file name
-    lat: 44.320686,
-    lng: -71.391752
-};
+
 // Function to fetch sunset/sunrise times
 async function getSunsetForMountain(lat, lng) {
     let response = await fetch(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`);

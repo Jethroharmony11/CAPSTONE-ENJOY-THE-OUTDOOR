@@ -15,6 +15,13 @@ body{ background-color: darkseagreen;
     padding: 1em;
     border-radius: 3em;
     }
+    p{
+      color: rgb(0, 106, 255); 
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif 
+    }
+    h1{
+        color: blueviolet;
+    }
     /* option{
     padding: 1em;
     margin: 1em;
