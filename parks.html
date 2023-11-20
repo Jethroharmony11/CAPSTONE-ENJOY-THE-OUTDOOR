@@ -3,12 +3,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">nbhgkm njgu
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parks</title>
     <script src="./scripts/locationData.js"></script>
     <script src="./scripts/parkTypeData.js"></script>
     <script src="./scripts/nationalParkData.js"></script>
+    <link rel="stylesheet" href="./style/style.css">
 
     <style>
         body {
@@ -28,7 +29,7 @@
             text-decoration: none;
             margin: 1em;
             color: white;
-            background-color: rgb(129, 139, 19);
+            background-color: rgb(139, 19, 93);
             padding: 1em;
             border-radius: 1em;
             display: inline-block;
@@ -77,8 +78,13 @@
         }
     
         function getCard(p) {
-            return `<div class="card">${p.LocationName}<div><b>${p.State}</b></div></div>`;
+            return `<div class="card">${p.LocationName}
+                <div><b>${p.State}</b></div>
+                <div><b>${p.Phone}</b></div>
+                </div>`;
+
         }
+        
     
         function showResults() {
             results.innerHTML = "";

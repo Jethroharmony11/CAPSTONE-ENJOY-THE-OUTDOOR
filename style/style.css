@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color:aliceblue(156, 230, 162, 0.625);
 }
 
 header, nav, main, footer {
@@ -10,7 +11,7 @@ header, nav, main, footer {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color:aliceblue;
     color: white;
     text-align: center;
     padding: 1em;
@@ -20,7 +21,7 @@ nav ul {
     list-style-type: none;
     padding: 0;
     overflow: hidden;
-    background-color: #e44141;
+    background-color: #bfa9a9;
 }
 .body{
     width: 29vw;
@@ -39,7 +40,7 @@ nav ul {
     display: inline-block;
     margin: 1em;
     color: white;
-    background-color: saddlebrown;
+    background-color:rgb(255, 196, 215);
     padding: 1em;
     border-radius: 1em;;
     }
@@ -69,9 +70,9 @@ footer {
     margin-top: 20px;
     text-align: center;
 }
-ody {
+body {
     
-    color: saddlebrown;
+    color:black;
     background: linear-gradient(rgba(39, 50, 245, 0.8), rgba(245, 225, 39, 0.12)),
                (white);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -130,17 +131,4 @@ html
             height: 20vh;
         }
 
-        h1 {
-            text-decoration: none;
-            display: inline-block;
-            margin: 1em;
-            color: white;
-            background-color: rgb(129, 139, 19);
-            padding: 1em;
-            border-radius: 1em;
-        }
-
-        h2 {
-            color: blue;
-        }
-    
+        
